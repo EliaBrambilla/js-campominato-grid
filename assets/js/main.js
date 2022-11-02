@@ -35,4 +35,33 @@ function quantityBoxes(livelloScelto) {
     }
     return quantity;
 }
+// genera quadrati
+function generateBoxes(boxesNumber) {
+    // su riga 66 resetto quello generato sul generalSquare.
+    // se non faccio questo reset le celle create si andranno
+    // ad aggiungere sullo stesso generalSquare
+    generalSquare.innerHTML = "";
+    // calcolo le row delle celle che sarebbe la radice quadrata di 100,81,49
+    const boxesXrow = Math.sqrt(boxesNumber);
+    // calcolo la size di ogni cella con ???
+    const boxesSize = 100 / boxesXrow;
 
+// ciclo per creare ogni singola cella
+    //  e dichiarare la size e la classe assegnata su css
+    // le aggiungo sul generalSquare con append
+
+    //  e al click dovranno eseguire una funzione (dichiarata dopo)
+    for (let i = 0; i < boxesNumber; i++) {
+        const box = document.createElement("div");
+        box.classList.add("box");
+        box.style.width = boxesSize + "%";
+        box.style.height = boxesSize + "%";
+        generalSquare.append(box);
+        box.textContent = i + 1;
+        box.addEventListener("click", boxOnClick);
+    }
+}
+// click colorato sul numero / casella scelta
+function boxOnClick() {
+    this.classList.toggle("box-on-click");
+}
